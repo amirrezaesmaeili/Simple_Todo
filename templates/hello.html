@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello</title>
+    <title>Hello </title>
 </head>
 <body>
-    <h3>Hello users</h3>
+    {%if name == "admin" %}
+    <p> hello you are logged as admin </p>
+    {% elif name == "amirreza" %}
+    <p> hello owner website </p>
+    {% else %}
+    <h3>Hello {{name}}</h3>
+    {%endif%}
 </body>
 </html>
