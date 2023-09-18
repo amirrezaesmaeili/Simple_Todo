@@ -2,8 +2,6 @@
 {% block title %}Home{% endblock title %}
 {% block content %}
 {% for todo in todos  %}
-    <h3>{{todo.title}}</h3>  
-    <small>{{todo.body}}</small>
-    <h3>{{todo.create}}</h3>
+    <a href="/detail/{{todo.id}}" >{{todo.title}}</a><br/>  
 {% endfor %}
 {% endblock content %} 
