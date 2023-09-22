@@ -1,6 +1,22 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render,redirect
+from .forms import UserRegistrationForm
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 def user_register(request):
+    if request.method == "POST":
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = User.objects.create_user(cd['username'],cd['email'],cd['password'])
+            user.first_name = cd['first_name']
+            user.last_name = cd['last_name']
+            user.save()
+            messages.success(request,'user register successfuly','success')
+            return redirect('home')
+    else:
+        form = UserRegistrationForm()
+        return render(request,'register.html',{'form':form})
+
     
-    return HttpResponse("this is register page")
+    
